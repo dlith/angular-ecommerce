@@ -22,15 +22,17 @@ export class CartService {
     
     if(this.cartItems.length > 0){
       // find the item in the cart based on item id
-      existingCartItem = this.cartItems.find(tempCartItem => tempCartItem.id = theCartItem.id);
+      existingCartItem = this.cartItems.find(tempCartItem => tempCartItem.id === theCartItem.id);
        // check if we found it 
-       alreadyExistsInCart = (existingCartItem != undefined);
+      alreadyExistsInCart = (existingCartItem != undefined);
     }
 
-    if(alreadyExistsInCart){
-      // increment the qieantity
+    if (alreadyExistsInCart) {
+      // increment the quantity
       existingCartItem.quantity++;
-    }else {
+    }
+    else {
+      // just add the item to the array
       this.cartItems.push(theCartItem);
     }
 
@@ -47,7 +49,7 @@ export class CartService {
       totalQuantityValue += currentCartItem.quantity;
     }
 
-    // public the new values ... all subscrebiers will receive the new data
+    // publish the new values ... all subscribers will receive the new data
     this.totalPrice.next(totalPriceValue);
     this.totalQuantity.next(totalQuantityValue);
 
