@@ -9,6 +9,8 @@ import { Form, FormBuilder, FormGroup } from '@angular/forms';
 export class CheckoutComponent implements OnInit {
 
   checkoutFormGroup: FormGroup;
+  totalPrice: number = 0;
+  totalQuantity: number = 0;
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -34,7 +36,7 @@ export class CheckoutComponent implements OnInit {
         country: [''],
         zipCode: ['']
       }),
-      creditCart: this.formBuilder.group({
+      creditCard: this.formBuilder.group({
         cardType: [''],
         nameOnCard: [''],
         cardNumber: [''],
