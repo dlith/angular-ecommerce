@@ -29,6 +29,18 @@ export class LoginComponent implements OnInit {
    }
 
   ngOnInit(): void {
-  }
+    this.oktaSignin.remove();
 
+    this.oktaSignin.redirectUri({
+      el: '#okta-sign-in-widget'}, // this name should be same as div tag id in login.component.html
+      (repsonse) => {
+        if (repsonse.status === 'SUCCESS'){
+          this.oktaAuthService.signInWithRedirect();
+        }
+      }, 
+      (error) => {
+        throw error;
+      }
+    );
+  }
 }
