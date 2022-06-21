@@ -9,7 +9,7 @@ import { Purchase } from '../common/purchase';
 })
 export class CheckoutService {
 
-  private purchaseUrl = environment.baseTestApiUrl + "/checkout/purchase";
+  private purchaseUrl = environment.baseApiUrl + "/checkout/purchase";
 
   constructor(private httpClient: HttpClient) { }
 

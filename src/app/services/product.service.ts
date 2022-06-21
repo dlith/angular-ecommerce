@@ -11,8 +11,8 @@ import { ProductCategory } from '../common/product-category';
 })
 export class ProductService {
   
-  private baseUrl = environment.baseTestApiUrl + "/products";
-  private categoryUrl = environment.baseTestApiUrl + "/product-category";
+  private baseUrl = environment.baseApiUrl + "/products";
+  private categoryUrl = environment.baseApiUrl + "/product-category";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -31,6 +31,8 @@ export class ProductService {
     const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}`
                       + `&page=${thePage}&size=${thePageSize}`;
 
+    console.log(`Getting products from - ${searchUrl}`);
+    
     return this.httpClient.get<GetResponseProduct>(searchUrl);
   }
 

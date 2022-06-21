@@ -10,8 +10,8 @@ import { State } from '../common/state';
 })
 export class Luv2ShopFormServiceService {
 
-  private countriesUrl = environment.baseTestApiUrl + '/countries';
-  private statesUrl = environment.baseTestApiUrl + '/states';
+  private countriesUrl = environment.baseApiUrl + '/countries';
+  private statesUrl = environment.baseApiUrl + '/states';
 
   constructor(private httpClient: HttpClient) { }
 
