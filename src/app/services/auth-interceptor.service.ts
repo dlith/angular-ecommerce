@@ -20,7 +20,7 @@ export class AuthInterceptorService implements HttpInterceptor{
   private async handleAccess(request: HttpRequest<any>, next: HttpHandler): Promise<HttpEvent<any>> {
     
     // only add an access token for secured endpoints
-    const theEndpoint = environment.baseApiUrl + 'orders';
+    const theEndpoint = environment.baseApiUrl + '/orders';
     const securedEndpoints = [theEndpoint];
 
     if(securedEndpoints.some(url=> request.urlWithParams.includes(url))){

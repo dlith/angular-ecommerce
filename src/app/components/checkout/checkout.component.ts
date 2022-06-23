@@ -134,11 +134,11 @@ export class CheckoutComponent implements OnInit {
 
       if(event.complete) {
         this.displayError.textContent = "";
-      }else {
-        //show validation error to customer
+      } else if (event.error) {
+        // show validation error to customer
         this.displayError.textContent = event.error.message;
       }
-    })
+    });
   }
 
   
@@ -220,7 +220,18 @@ export class CheckoutComponent implements OnInit {
           this.stripe.confirmCardPayment(paymentIntentResponse.client_secret,
             {
               payment_method: {
-                card: this.cardElement
+                card: this.cardElement,
+                billing_details: {
+                  email: purchase.customer.email,
+                  name: `${purchase.customer.firstName} ${purchase.customer.lastName}`,
+                  address: {
+                    line1: purchase.billingAddress.streer,
+                    city: purchase.billingAddress.city,
+                    state: purchase.billingAddress.state,
+                    postal_code: purchase.billingAddress.zipCode,
+                    country: this.billingAddressCountry.value.code
+                  }
+                }
               }
             }, { handleActions: false })
           .then(function(result) {
